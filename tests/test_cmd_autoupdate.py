@@ -1,5 +1,8 @@
 """Tests for the ``autoupdate`` command."""
 import tempfile
+import time
+import os
+import warnings
 
 from .test_utils import (
     CliTestCase
@@ -48,6 +51,8 @@ class CmdAutoupdateTestCase(CliTestCase):
                 "--conda_channels", "bioconda"
             ]
             self._check_exit_code(autoupdate_command, exit_code=0)
+            warnings.warn('Write access{}'.format(os.access(xmlfile, os.W_OK)))
+            warnings.warn('Read access{}'.format(os.access(xmlfile, os.R_OK)))
             with open(xmlfile) as stream:
                 updated_tool = stream.readlines()
                 assert updated_tool[2].strip() == '<token name="@TOOL_VERSION@">0.7.3</token>'

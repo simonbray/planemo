@@ -21,7 +21,10 @@ testing easier.
 **Options**::
 
 
-      -f, --force        Overwrite existing files if present.
+      -f, --force                     Overwrite existing files if present.
       -o, --output FILE
-      --help             Show this message and exit.
+      --split_test / --no_split_test  Write workflow job and test definitions to
+                                      separate files.
+    
+      --help                          Show this message and exit.
     
